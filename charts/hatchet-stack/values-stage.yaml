@@ -18,6 +18,13 @@ engine:
     - secretRef:
         name: hatchet-db-secret
 
+resources:
+  requests:
+    cpu: 250m
+    memory: 1Gi
+  limits:
+    memory: 3Gi
+
 sealedSecret:
   encryptedData:
     DATABASE_POSTGRES_DB_NAME: AgBrXH2ZrCgVCKEQuYhYMTD4iNYjiPtFP1JoUEfdNbkNi2aRuT3cmRrHYd2+o7gUpfzbCz/gYqG2+567CfIuTe1t2CymR0357QgyGrqDVsrIugl5IBiwDrg0l18uGtCkjTbMnfvGH7ughICvCx94tcvyTVLR3lGMZkIKHgvIoZl0Tj8vFyv3jMtEnA8rwUp3BGu10wQhDZpxKeyH9CHzodQ8tDBYtk57KcvcGua4BwYudha1gpNC1ryuumS9VoXoDSBhesgIIB9XGCRsr1ILtVYK77F0h7Ky+VXlrHnnwceS6ZUMgpl+X2TLL3CgYAafpSIw06emuSt35F4R3ZnsyJ4LcRft/mmiyCBbyzV754/nxIcv5oKp8+ITyqqMNgPyr0UhmKuW8PqnRRejNl96wM4W34vuvxa4M0i5JyJ//ErQijdPwxy77aZLKo2xwZU+dSuU1TbUm+kOM6Y9lyyOl3K3XnXwr1raNqvR6B1xgy3vJb79TC6MdkgRDGvhzFLDZmKoiEddpa6bXgoQjlKRMyp07cqSHlQMaWMYEe4LiWUdMsQsrchaH4ycy1I4Ik4jg7zpXkqNAG78HJWnVYkUdj5DyWZtXsh/bLKX5HezMqNtATVmH7DUEvC2YMB6yt6UPm50wZlSSFDSW97PyZ4oDr/7ezKhu5GUlHsQmGZ3x9Mi0tGo7Kd/8ltcxYt14odnXMAZwu0wqFyO
