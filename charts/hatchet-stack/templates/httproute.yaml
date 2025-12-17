@@ -14,12 +14,6 @@ spec:
         - path:
             type: PathPrefix
             value: /api/
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
       backendRefs:
         - name: hatchet-stage-api
           port: 8080
