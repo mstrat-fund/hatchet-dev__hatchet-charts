@@ -4,6 +4,10 @@ postgres:
 caddy:
   enabled: false
 
+sharedConfig:
+  serverUrl: "https://hatchet.stage.mstrat.fund"
+  serverAuthCookieDomain: "hatchet.stage.mstrat.fund"
+
 api:
   envFrom:
     - secretRef:
