@@ -13,17 +13,15 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /api
+            value: /api/
       filters:
         - type: URLRewrite
           urlRewrite:
             path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: ""
+              replacePrefixMatch: /
       backendRefs:
         - name: hatchet-stage-api
           port: 8080
-
     - matches:
         - path:
             type: PathPrefix
