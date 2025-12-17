@@ -4,6 +4,18 @@ postgres:
 caddy:
   enabled: false
 
+sharedConfig:
+  enabled: true
+  serverUrl: "https://hatchet.stage.mstrat.fund"
+  serverAuthCookieDomain: "hatchet.stage.mstrat.fund"
+  serverAuthCookieInsecure: "t" # allows cookies to be set over http
+  serverAuthSetEmailVerified: "t" # automatically sets email_verified to true for all users
+  serverAuthBasicAuthEnabled: "t" # allows login via basic auth (email/password)
+  grpcBroadcastAddress: "engine.hatchet.stage.mstrat.fund:443" # the endpoint for the gRPC server, exposed via the `grpc` service
+  grpcInsecure: "false" # allows gRPC to be served over http
+  defaultAdminEmail: "admin@example.com" # in exposed/production environments, change this to a valid email
+  defaultAdminPassword: "Admin123!!" # in exposed/production environments, change this to a secure password
+
 api:
   env:
     SERVER_AUTH_COOKIE_DOMAIN: "hatchet.stage.mstrat.fund"
@@ -34,7 +46,6 @@ frontend:
   env:
     SERVER_AUTH_COOKIE_DOMAIN: "hatchet.stage.mstrat.fund"
     SERVER_URL: "https://hatchet.stage.mstrat.fund"
-
 
 resources:
   requests:
