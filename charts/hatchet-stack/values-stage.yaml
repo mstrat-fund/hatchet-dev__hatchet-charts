@@ -32,6 +32,18 @@ gatewayRoutes:
     serviceName: hatchet-stage-frontend
     servicePort: 8080
 
+  api:
+    host: hatchet.stage.mstrat.fund
+    pathPrefix: /api
+    serviceName: hatchet-stage-api
+    servicePort: 8080
+
+  engine:
+    host: engine.hatchet.stage.mstrat.fund
+    pathPrefix: /
+    serviceName: hatchet-stage-engine
+    servicePort: 7070
+
 resources:
   requests:
     cpu: 250m
