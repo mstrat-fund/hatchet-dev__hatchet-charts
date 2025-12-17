@@ -19,7 +19,7 @@ spec:
           urlRewrite:
             path:
               type: ReplacePrefixMatch
-              replacePrefixMatch: /
+              replacePrefixMatch: ""
       backendRefs:
         - name: hatchet-stage-api
           port: 8080
