@@ -18,6 +18,13 @@ engine:
     - secretRef:
         name: hatchet-db-secret
 
+gatewayRoutes:
+  frontend:
+    host: hatchet.stage.mstrat.fund
+    pathPrefix: /
+    serviceName: hatchet-stage-frontend
+    servicePort: 8080
+
 resources:
   requests:
     cpu: 250m

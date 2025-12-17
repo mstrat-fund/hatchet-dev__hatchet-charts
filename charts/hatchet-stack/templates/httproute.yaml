@@ -1,0 +1,21 @@
+{{- if .Values.gatewayRoutes.frontend }}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: hatchet-frontend-httproute
+  namespace: {{ .Release.Namespace }}
+spec:
+  parentRefs:
+  - name: traefik-gw
+    namespace: kube-system
+  hostnames:
+  - {{ .Values.gatewayRoutes.frontend.host | quote }}
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: {{ .Values.gatewayRoutes.frontend.pathPrefix }}
+    backendRefs:
+    - name: {{ .Values.gatewayRoutes.frontend.serviceName }}
+      port: {{ .Values.gatewayRoutes.frontend.servicePort }}
+{{- end }}
