@@ -7,6 +7,9 @@ caddy:
 sharedConfig:
   serverUrl: "https://hatchet.stage.mstrat.fund"
   serverAuthCookieDomain: "hatchet.stage.mstrat.fund"
+  serverAuthSetEmailVerified: "t"
+  defaultAdminEmail: "admin@example.com"
+  defaultAdminPassword: "Admin123!!"
 
 api:
   envFrom:
