@@ -1,47 +1,49 @@
-{{- if .Values.gatewayRoutes.frontend }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: hatchet-frontend-httproute
-  namespace: {{ .Release.Namespace }}
+  name: hatchet-frontend-api
+  namespace: stage
 spec:
   parentRefs:
-  - name: traefik-gw
-    namespace: kube-system
+    - name: traefik-gw
+      namespace: kube-system
   hostnames:
-  - {{ .Values.gatewayRoutes.frontend.host | quote }}
+    - "hatchet.stage.mstrat.fund"
   rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: {{ .Values.gatewayRoutes.api.pathPrefix }}
-    backendRefs:
-    - name: {{ .Values.gatewayRoutes.api.serviceName }}
-      port: {{ .Values.gatewayRoutes.api.servicePort }}
-  - matches:
-    - path:
-        type: PathPrefix
-        value: {{ .Values.gatewayRoutes.frontend.pathPrefix }}
-    backendRefs:
-    - name: {{ .Values.gatewayRoutes.frontend.serviceName }}
-      port: {{ .Values.gatewayRoutes.frontend.servicePort }}
-{{- end }}
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: hatchet-stage-api
+          port: 8080
 
-{{- if .Values.gatewayRoutes.engine }}
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: hatchet-stage-frontend
+          port: 8080
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: hatchet-engine-httproute
-  namespace: {{ .Release.Namespace }}
+  name: hatchet-engine
+  namespace: stage
 spec:
   parentRefs:
-  - name: traefik-gw
-    namespace: kube-system
+    - name: traefik-gw
+      namespace: kube-system
   hostnames:
-  - {{ .Values.gatewayRoutes.engine.host | quote }}
+    - "engine.hatchet.stage.mstrat.fund"
   rules:
-  - backendRefs:
-    - name: {{ .Values.gatewayRoutes.engine.serviceName }}
-      port: {{ .Values.gatewayRoutes.engine.servicePort }}
-{{- end }}
+    - backendRefs:
+        - name: hatchet-stage-engine
+          port: 7070

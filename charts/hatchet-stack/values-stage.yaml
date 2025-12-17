@@ -4,14 +4,13 @@ postgres:
 caddy:
   enabled: false
 
-sharedConfig:
-  serverUrl: "https://hatchet.stage.mstrat.fund"
-  serverAuthCookieDomain: "hatchet.stage.mstrat.fund"
-  serverAuthSetEmailVerified: "t"
-  defaultAdminEmail: "admin@example.com"
-  defaultAdminPassword: "Admin123!!"
-
 api:
+  env:
+    SERVER_AUTH_COOKIE_DOMAIN: "hatchet.stage.mstrat.fund"
+    SERVER_URL: "https://hatchet.stage.mstrat.fund"
+    SERVER_GRPC_BIND_ADDRESS: "0.0.0.0"
+    SERVER_GRPC_INSECURE: "false"
+    SERVER_GRPC_BROADCAST_ADDRESS: "engine.hatchet.stage.mstrat.fund:443"
   envFrom:
     - secretRef:
         name: hatchet-shared-config
@@ -19,30 +18,23 @@ api:
         name: hatchet-db-secret
 
 engine:
+  env:
+    SERVER_AUTH_COOKIE_DOMAIN: "hatchet.stage.mstrat.fund"
+    SERVER_URL: "https://hatchet.stage.mstrat.fund"
+    SERVER_GRPC_BIND_ADDRESS: "0.0.0.0"
+    SERVER_GRPC_INSECURE: "false"
+    SERVER_GRPC_BROADCAST_ADDRESS: "engine.hatchet.stage.mstrat.fund:443"
   envFrom:
     - secretRef:
         name: hatchet-shared-config
     - secretRef:
         name: hatchet-db-secret
 
-gatewayRoutes:
-  frontend:
-    host: hatchet.stage.mstrat.fund
-    pathPrefix: /
-    serviceName: hatchet-stage-frontend
-    servicePort: 8080
+frontend:
+  env:
+    SERVER_AUTH_COOKIE_DOMAIN: "hatchet.stage.mstrat.fund"
+    SERVER_URL: "https://hatchet.stage.mstrat.fund"
 
-  api:
-    host: hatchet.stage.mstrat.fund
-    pathPrefix: /api
-    serviceName: hatchet-stage-api
-    servicePort: 8080
-
-  engine:
-    host: engine.hatchet.stage.mstrat.fund
-    pathPrefix: /
-    serviceName: hatchet-stage-engine
-    servicePort: 7070
 
 resources:
   requests:
