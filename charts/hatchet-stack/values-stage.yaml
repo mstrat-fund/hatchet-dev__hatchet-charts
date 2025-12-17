@@ -7,9 +7,7 @@ caddy:
 sharedConfig:
   serverUrl: "https://hatchet.stage.mstrat.fund"
   serverAuthCookieDomain: ".stage.mstrat.fund"
-  serverAuthCookieInsecure: "false"
   grpcBroadcastAddress: "engine.hatchet.stage.mstrat.fund:443"
-  grpcInsecure: "false"
 
 api:
   envFrom:
